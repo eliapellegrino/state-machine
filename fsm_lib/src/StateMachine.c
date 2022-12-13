@@ -101,7 +101,7 @@ void _SM_StateEngineEx(SM_StateMachine* self, const SM_StateMachineConst* selfCo
         SM_StateFunc state = selfConst->stateMapEx[self->newState].pStateFunc;
         SM_GuardFunc guard = selfConst->stateMapEx[self->newState].pGuardFunc;
         SM_EntryFunc entry = selfConst->stateMapEx[self->newState].pEntryFunc;
-        SM_ExitFunc exit = selfConst->stateMapEx[self->currentState].pExitFunc;
+        SM_ExitFunc exitt = selfConst->stateMapEx[self->currentState].pExitFunc;
 
         // Copy of event data pointer
         pDataTemp = self->pEventData;
@@ -122,15 +122,15 @@ void _SM_StateEngineEx(SM_StateMachine* self, const SM_StateMachineConst* selfCo
             // Transitioning to a new state?
             if (self->newState != self->currentState)
             {
-                // Execute the state exit action on current state before switching to new state
-                if (exit != NULL)
-                    exit(self);
+                // Execute the state exitt action on current state before switching to new state
+                if (exitt != NULL)
+                    exitt(self);
 
                 // Execute the state entry action on the new state
                 if (entry != NULL)
                     entry(self, pDataTemp);
 
-                // Ensure exit/entry actions didn't call SM_InternalEvent by accident 
+                // Ensure exitt/entry actions didn't call SM_InternalEvent by accident 
                 ASSERT_TRUE(self->eventGenerated == FALSE);
             }
 

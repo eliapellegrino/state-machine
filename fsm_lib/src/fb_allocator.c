@@ -4,7 +4,7 @@
 #include <string.h>
 
 // Define USE_LOCK to use the default lock implementation
-#define USE_LOCKS
+//#define USE_LOCKS
 #ifdef USE_LOCKS
     #include "LockGuard.h"
     static LOCK_HANDLE _hLock;

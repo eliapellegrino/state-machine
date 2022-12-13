@@ -3,9 +3,7 @@
 
 #include "DataTypes.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+
 
 typedef void* LOCK_HANDLE;
 
@@ -19,8 +17,5 @@ void LK_Destroy(LOCK_HANDLE hLock);
 void LK_Lock(LOCK_HANDLE hLock);
 void LK_Unlock(LOCK_HANDLE hLock);
 
-#ifdef __cplusplus
-}
-#endif
 
 #endif 

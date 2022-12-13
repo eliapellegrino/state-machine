@@ -1,12 +1,7 @@
 #ifndef _FAULT_H
 #define _FAULT_H
 
-#ifdef __cplusplus
-extern "C" {
-#endif
 
-// Used for compile-time checking for array sizes. On Windows VC++, you get 
-// an "error C2118: negative subscript" error.
 #ifndef C_ASSERT
 #define C_ASSERT(expr)  {char uname[(expr)?1:-1];uname[0]=0;}
 #endif
@@ -22,8 +17,5 @@ extern "C" {
 	/// @param[in] line - the line number that the software assertion occurred on
 	void FaultHandler(const char* file, unsigned short line);
 
-#ifdef __cplusplus
-}
-#endif
 
 #endif 

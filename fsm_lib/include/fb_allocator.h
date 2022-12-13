@@ -24,10 +24,6 @@
 #include <stdlib.h>
 #include "DataTypes.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 typedef void* ALLOC_HANDLE;
 
 typedef struct 
@@ -85,9 +81,7 @@ void* ALLOC_Alloc(ALLOC_HANDLE hAlloc, size_t size);
 void* ALLOC_Calloc(ALLOC_HANDLE hAlloc, size_t num, size_t size);
 void ALLOC_Free(ALLOC_HANDLE hAlloc, void* pBlock);
 
-#ifdef __cplusplus
-}
-#endif
+
 
 #endif  // _FB_ALLOCATOR_H
 

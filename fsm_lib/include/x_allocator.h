@@ -50,10 +50,6 @@
 #include "fb_allocator.h"
 #include <stddef.h>
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 // Overhead bytes added to each XALLOC memory block
 #define XALLOC_BLOCK_META_DATA_SIZE  sizeof(ALLOC_Allocator*)
 
@@ -70,9 +66,5 @@ void* XALLOC_Alloc(XAllocData* self, size_t size);
 void XALLOC_Free(void* ptr);
 void* XALLOC_Realloc(XAllocData* self, void *ptr, size_t new_size);
 void* XALLOC_Calloc(XAllocData* self, size_t num, size_t size);
-
-#ifdef __cplusplus
-}
-#endif
 
 #endif // _X_ALLOCATOR_H
