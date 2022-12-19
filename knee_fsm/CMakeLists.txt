@@ -7,6 +7,8 @@ add_library(${lib_name}
     STATIC
     src/StateMachine.c
     src/Knee_Fsm.c
+    src/filters.c
+    src/utilities.c
 )
 
 target_include_directories(${lib_name}

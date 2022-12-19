@@ -2,6 +2,7 @@
 #include "StateMachine.h"
 #include <stdlib.h>
 #include <stdio.h>
+
 int change_task_state_machine( state_machine_t *StateMachinePtr, int task) {
     StateMachinePtr->task = task;
     return SM_OK;
@@ -10,7 +11,8 @@ int run_state_machine( state_machine_t *StateMachinePtr) {
     int state_id = StateMachinePtr->current_state->state_id;
 
     for (int state = 0; state < StateMachinePtr->max_states; state++) {
-        if (StateMachinePtr->allowed_transistion_table[StateMachinePtr->max_states*state_id+state] == ALLOWED) {
+        //if (StateMachinePtr->allowed_transistion_table[StateMachinePtr->max_states*state_id+state] == ALLOWED) {
+        if (StateMachinePtr->allowed_transistion_table[StateMachinePtr->task*(StateMachinePtr->max_states*StateMachinePtr->max_states)+StateMachinePtr->max_states*state_id+state] == ALLOWED) {
             const state_t *tmp_state = &(StateMachinePtr->states[state]);
             if (tmp_state->p_guard_function[StateMachinePtr->task](StateMachinePtr->current_state->state_id)) {
                 // Call Exit function of "previous" state
@@ -40,6 +42,13 @@ int init_state_machine( state_machine_t *StateMachinePtr, state_t *initial_state
 
     return SM_NOK;
     
+}
+
+int get_current_state (state_machine_t *StateMachinePtr) {
+    return StateMachinePtr->current_state->state_id;
+}
+int get_current_task (state_machine_t *StateMachinePtr) {
+    return StateMachinePtr->task;
 }
 
 state_machine_t *create_state_machine(void) {

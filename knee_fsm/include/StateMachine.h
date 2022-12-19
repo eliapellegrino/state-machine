@@ -1,5 +1,5 @@
-#ifndef _KNEE_STATE_MACHINE_H
-#define _KNEE_STATE_MACHINE_H
+#ifndef _STATE_MACHINE_H
+#define _STATE_MACHINE_H
 /**
  * Little State Machine Implementation.
  * With this StateMachine, each state is described by:
@@ -84,10 +84,12 @@ int change_task_state_machine( state_machine_t *StateMachinePtr, int task);
 */
 int init_state_machine( state_machine_t *StateMachinePtr, state_t *initial_state, const allowed_trans *allowed_transistion_table, state_t *states, int max_states, int initial_task);
 
+int get_current_state (state_machine_t *StateMachinePtr);
+int get_current_task (state_machine_t *StateMachinePtr);
 // Do not use below function in embedded, as we do  not want to use malloc
 /**
  * Allocate the space for a StateMachine on the heap (using malloc)
 */
 state_machine_t *create_state_machine( void ); // Do not use this in embedded
 void destroy_state_machine(state_machine_t *StateMachinePtr);
-#endif // _KNEE_STATE_MACHINE_H
+#endif // _STATE_MACHINE_H

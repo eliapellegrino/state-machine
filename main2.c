@@ -1,21 +1,22 @@
 #include "Knee_Fsm.h"
 #include <stdio.h>
 #include <unistd.h>
-  
 
-int main(void)
-{
+int main(int args, char **argv)
+{   
     float actual_time = 0;
-    state_machine_t knee_fsm;
-    int ret_code = init_knee_fsm(&knee_fsm, &actual_time);
+    int ret_code = init_knee_fsm(STANCE_FLEXION, WALK);
     if (ret_code == SM_OK) {
         printf("SM Succesfully created!\n");
     }
     while (1) {
-        usleep(100000);
-        actual_time += 0.1;
-        printf("Run state machine \n");
-        run_state_machine(&knee_fsm);
+        delayMicrosec(5000);
+        actual_time += 0.005;
+        run_fsm();
+        if (actual_time > 4) {
+            change_task(SLOPE_UP);
+            actual_time = 0;
+        }
         printf("\n\n\n");
     }
     
